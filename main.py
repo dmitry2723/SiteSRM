@@ -1,12 +1,11 @@
-a = 1 - 2
+from flask import Flask
+from flask import Flask, request, render_template
 
-print(a)
+app = Flask(__name__)
 
-print(a + 5)
- 
- 
-b = 3-3
-w = 3232
+@app.route('/')
+def index():
+    return render_template('login.html')
 
-print(b+w)
-button = a
+if __name__ == "__main__":
+    app.run()
