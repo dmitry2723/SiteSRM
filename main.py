@@ -22,7 +22,6 @@ import uuid
 #     print('Вы ввели правильный пароль')
 # else:
 #     print('Извините, но пароль не подходит')
-# комм. для отправки на гит
 app = Flask(__name__)
 @app.route('/login/', methods =["GET", "POST"])
 def login():
