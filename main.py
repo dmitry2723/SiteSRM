@@ -23,35 +23,3 @@ import uuid
 # else:
 #     print('Извините, но пароль не подходит')
 # проверка версий
-app = Flask(__name__)
-
-
-@app.route('/login/', methods =["GET", "POST"])
-def login():
-    hashpass = "21232f297a57a5a743894a0e4a801fc3"
-    if request.method == "POST":
-        name = request.form.get("fname") 
-        password = request.form.get("lname")
-        hash_object = hashlib.md5(password.encode())
-        passr = hash_object.hexdigest()
-        print(passr, hashpass)
-        if name == "admin" and passr == hashpass:
-            if request.cookies.get('foo'):
-                return redirect("http://127.0.0.1:5000/services/", code=302)
-            if not request.cookies.get('foo'):
-                res = make_response("Всё правильно, обнови страницу, чтобы продолжить")
-                res.set_cookie('foo', 'lolo', max_age=60*60*24*1)
-                return res
-            else:
-                return redirect("http://127.0.0.1:5000/services/", code=302)
-        else:
-            return "Пароль, блять, не верный"
-    else:
-        return render_template("login.html")
-
-@app.route('/services/', methods =["GET", "POST"])
-def service():
-    return render_template("services.html")
-
-if __name__ == "__main__":
-    app.run()
