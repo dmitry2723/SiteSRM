@@ -4,9 +4,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, mak
 import hashlib
 import uuid
 
-
- 
-
 # def hash_password(password):
 #     # uuid используется для генерации случайного числа
 #     salt = uuid.uuid4().hex
@@ -28,7 +25,7 @@ import uuid
 
 app = Flask(__name__)
 
-data = b'Hello, world!'
+
 @app.route('/login/', methods =["GET", "POST"])
 def login():
     hashpass = "21232f297a57a5a743894a0e4a801fc3"
@@ -39,17 +36,22 @@ def login():
         passr = hash_object.hexdigest()
         print(passr, hashpass)
         if name == "admin" and passr == hashpass:
+            if request.cookies.get('foo'):
+                return redirect("http://127.0.0.1:5000/services/", code=302)
             if not request.cookies.get('foo'):
-                res = make_response("загрузил куки")
-                res.set_cookie('foo', 'lolo', max_age=60*60*24*365*2)
+                res = make_response("Всё правильно, обнови страницу, чтобы продолжить")
+                res.set_cookie('foo', 'lolo', max_age=60*60*24*1)
+                return res
             else:
-                res = make_response("этот куки уже есть в браузере {}".format(request.cookies.get('foo')))
-            return res
+                return redirect("http://127.0.0.1:5000/services/", code=302)
         else:
             return "Пароль, блять, не верный"
     else:
         return render_template("login.html")
 
+@app.route('/services/', methods =["GET", "POST"])
+def service():
+    return render_template("services.html")
 
 if __name__ == "__main__":
     app.run()
