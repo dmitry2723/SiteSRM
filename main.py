@@ -24,8 +24,6 @@ import uuid
 #     print('Извините, но пароль не подходит')
 
 app = Flask(__name__)
-
-
 @app.route('/login/', methods =["GET", "POST"])
 def login():
     hashpass = "21232f297a57a5a743894a0e4a801fc3"
@@ -39,19 +37,22 @@ def login():
             if request.cookies.get('foo'):
                 return redirect("http://127.0.0.1:5000/services/", code=302)
             if not request.cookies.get('foo'):
-                res = make_response("Всё правильно, обнови страницу, чтобы продолжить")
+                res = redirect("http://127.0.0.1:5000/services/", code=302)
                 res.set_cookie('foo', 'lolo', max_age=60*60*24*1)
                 return res
             else:
                 return redirect("http://127.0.0.1:5000/services/", code=302)
         else:
-            return "Пароль, блять, не верный"
+            return "Ошибка в логине или пароле"
     else:
         return render_template("login.html")
 
 @app.route('/services/', methods =["GET", "POST"])
 def service():
-    return render_template("services.html")
+    if not request.cookies.get('foo'):
+        return redirect("http://127.0.0.1:5000/login/", code=302)
+    else:
+        return render_template("services.html")
 
 if __name__ == "__main__":
     app.run()
