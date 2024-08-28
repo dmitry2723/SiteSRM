@@ -22,7 +22,7 @@ import uuid
 #     print('Вы ввели правильный пароль')
 # else:
 #     print('Извините, но пароль не подходит')
-# проверка версий
+
 app = Flask(__name__)
 
 
@@ -37,21 +37,25 @@ def login():
         print(passr, hashpass)
         if name == "admin" and passr == hashpass:
             if request.cookies.get('foo'):
-                return redirect("http://127.0.0.1:5000/services/", code=302)
+                return redirect("http://127.0.0.1:5000/Products/", code=302)
             if not request.cookies.get('foo'):
                 res = make_response("Всё правильно, обнови страницу, чтобы продолжить")
                 res.set_cookie('foo', 'lolo', max_age=60*60*24*1)
                 return res
             else:
-                return redirect("http://127.0.0.1:5000/services/", code=302)
+                return redirect("http://127.0.0.1:5000/Products/", code=302)
         else:
-            return "Пароль, блять, не верный"
+            return "Ошибка в пароле или логине, попробуй снова"
     else:
         return render_template("login.html")
 
-@app.route('/services/', methods =["GET", "POST"])
+@app.route('/Products/', methods =["GET", "POST"])
 def service():
-    return render_template("services.html")
+    if not request.cookies.get('foo'):
+        return render_template("login.html")
+    else:
+        return render_template("Products.html")
+        
 
 if __name__ == "__main__":
     app.run()
