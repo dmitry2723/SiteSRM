@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Ебанный бобанный{% endblock %}
+{% block style%}
+    
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" />
+
+{% endblock %}
+{% block content %}
+{{ super() }}
+{% if message %}
+        <p>{{ message }}</p>
+{% endif %}
+
+
+
+<div id="form_staf"> 
+    <form action="{{ url_for("form_staf")}}" method="post" class="form">
+            
+        <input type="text" placeholder="Название" class="form__input" id="name" />
+        <label for="name" class="form__label">Название</label>
+
+        <input type="number" placeholder="Цена" class="form__input" id="price" />
+        <label for="number" class="form__label">Цена</label>
+
+        <textarea type="text" placeholder="Описание" class="form__input" id="description" />
+        </textarea>
+        <label for="description" class="form__label">Описание</label>
+
+        <button type="submit">Загрузить</button>
+            
+    </form>
+</div>
+
+
+
+
+
+{% endblock %}

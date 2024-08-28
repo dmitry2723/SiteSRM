@@ -199,6 +199,9 @@ h6 {
     margin-bottom: 20px;
     flex-direction: column;
 }
+#add_product a:hover{
+	margin-bottom: 10px;
+}
 
 #card_product{
 	display: flex;
@@ -207,11 +210,17 @@ h6 {
     width: fit-content;
     height: fit-content;
 }
-#card_product a{
-	text-decoration: none;
+.none-text{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #product_description{
+	margin-top: 10px;
 	display: flex;
     width: 170px;
     height: 45px;
