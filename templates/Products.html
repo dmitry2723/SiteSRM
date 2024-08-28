@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Ебанный бобанный{% endblock %}
+
+{% block content %}
+{{ super() }}
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+
+
+<div id="container">
+  <div id="wrapper_center">
+    <div id="wrapper">
+      <div class="tab-wrapper">
+        <ul id="tab-menu">
+          <li><a href="Products.html">Товары</a></li>
+          <li><a href="Staff.html">Персонал</a></li>
+          <li><a href="Branches.html">Филиалы</a></li>
+          <li><a href="Statistics.html">Статистика</a></li>
+        </ul>
+        <div class="tab-content">
+              
+
+
+          <div id="product">
+
+              <div id="card_product">
+                <a>
+                  <div id="add_product">
+                  
+                    <img src="{{ url_for('static', filename='/logo/plus.png') }}" /></a>
+                    <div id="product_description">
+                      <h1>Добавить товар</h1>
+                    </div>
+                
+                  </div>
+                </a>
+                
+
+              </div>
+
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="push"></div>
+    <div id="footer-wrapper">
+      <div id="footer">
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  {% endblock %}
