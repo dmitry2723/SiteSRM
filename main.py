@@ -55,7 +55,10 @@ def service():
         return render_template("login.html")
     else:
         return render_template("Products.html")
-        
+
+@app.route('/form_staf/', methods =["GET", "POST"])
+def form_staf():
+    return render_template("form.html")
 
 if __name__ == "__main__":
     app.run()
