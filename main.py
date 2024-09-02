@@ -34,7 +34,6 @@ def login():
         password = request.form.get("lname")
         hash_object = hashlib.md5(password.encode())
         passr = hash_object.hexdigest()
-        print(passr, hashpass)
         if name == "admin" and passr == hashpass:
             if request.cookies.get('foo'):
                 return redirect("http://127.0.0.1:5000/Products/", code=302)
@@ -51,6 +50,11 @@ def login():
 
 @app.route('/Products/', methods =["GET", "POST"])
 def Products():
+    if request.method == "POST":
+        name = request.form.get("fname") 
+        price = request.form.get("price")
+        description = request.form.get("description")
+        print(name, price, description)
     name_title = "Товары"
     if not request.cookies.get('foo'):
         return render_template("login.html")
