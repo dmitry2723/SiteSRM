@@ -15,16 +15,15 @@
 
 
 <div id="form_staf"> 
-    <form action="{{ url_for("form_staf")}}" method="post" class="form">
+    <form action="{{ url_for("Products")}}" method="post" class="form">
             
-        <input type="text" placeholder="Название" class="form__input" id="name" />
+        <input type="text" required  name = "fname" placeholder="Название" class="form__input" id="name" />
         <label for="name" class="form__label">Название</label>
 
-        <input type="number" placeholder="Цена" class="form__input" id="price" />
+        <input type="number" required name = "price" placeholder="Цена" class="form__input" id="price" />
         <label for="number" class="form__label">Цена</label>
 
-        <textarea type="text" placeholder="Описание" class="form__input" id="description" />
-        </textarea>
+        <textarea type="text" name = "description" required placeholder="Описание" class="form__input" id="description" /></textarea>
         <label for="description" class="form__label">Описание</label>
 
         <button type="submit">Загрузить</button>
