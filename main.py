@@ -50,15 +50,49 @@ def login():
         return render_template("login.html")
 
 @app.route('/Products/', methods =["GET", "POST"])
-def service():
+def Products():
+    name_title = "Товары"
     if not request.cookies.get('foo'):
         return render_template("login.html")
     else:
-        return render_template("Products.html")
+        return render_template("Products.html", title_web = name_title)
 
 @app.route('/form_staf/', methods =["GET", "POST"])
 def form_staf():
-    return render_template("form.html")
+    if not request.cookies.get('foo'):
+        return render_template("login.html")
+    else:
+        return render_template("form.html")
+    
+@app.route('/personal/', methods =["GET", "POST"])
+def personal():
+    name_title = "Персонал"
+    if not request.cookies.get('foo'):
+        return render_template("login.html")
+    else:
+        return render_template("personal.html", title_web = name_title)
+    
+@app.route('/Branches/', methods =["GET", "POST"])
+def Branches():
+    name_title = "Филиалы"
+    if not request.cookies.get('foo'):
+        return render_template("login.html")
+    else:
+        return render_template("branch.html", title_web = name_title)
+    
+@app.route('/Statistics/', methods =["GET", "POST"])
+def Statistics():
+    name_title = "Статистика"
+    if not request.cookies.get('foo'):
+        return render_template("login.html")
+    else:
+        return render_template("Statistics.html", title_web = name_title)
+    
+
+    
+Statistics
+    
+    
 
 if __name__ == "__main__":
     app.run()

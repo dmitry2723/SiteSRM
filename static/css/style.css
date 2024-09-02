@@ -11,6 +11,7 @@ body{
 }
 
 #form_staf{
+    border-radius: 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
